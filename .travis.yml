@@ -1,6 +1,6 @@
 language: python
 python:
   - "3.9"
-# command to install dependencies
+# command to install dependenciess
 script:
   - python astTest.py
