@@ -4,7 +4,6 @@ from pathlib import Path
 #List of identifiers found here https://docs.python.org/3/library/ast.html#abstract-grammar
 from pprint import pprint
 
-
 #Function that returns all the Identifiers in the ast tree
 def getIdentifiers(ast_code):
     root = ast_code
@@ -46,10 +45,10 @@ def depthAst(root, depth, maxDepth):
         #Checks if a control stucture exists at the current node, if it does add one to the depth and move one node down the tree
         if isinstance(child, ast.If) or isinstance(child, ast.For) or isinstance(child, ast.While) or isinstance(child, ast.With) or isinstance(child, ast.AsyncFor) or isinstance(child, ast.AsyncWith):
             depth = depth + 1
+            maxDepth = depthAst(child, depth, maxDepth)
             if maxDepth < depth:
                 maxDepth = depth
             #Recursion to help travel the list
-            maxDepth = depthAst(child, depth, maxDepth)
             depth = depth - 1
     return maxDepth
 
@@ -57,6 +56,7 @@ def main(pythonFile):
     #Places the text of the .py code being tested into a string so the ast.parse can read it
     code = Path(pythonFile).read_text()
     code_ast = ast.parse(code)
+    print(ast.dump(code_ast, indent=4))
 
     #List of the identifiers within the program
     identifierList = list(getIdentifiers(code_ast))
@@ -79,6 +79,8 @@ def main(pythonFile):
         print("Maximum control structure nesting is below 4. The max nesting is: " + str(maxDepth))
     else:
         print("Maximum control structure nesting is above or equal to 4. The max nesting is: " + str(maxDepth))
+
+
 
 main("Test1.py")
 main("Test2.py")
