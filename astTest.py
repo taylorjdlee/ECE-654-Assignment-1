@@ -56,7 +56,6 @@ def main(pythonFile):
     #Places the text of the .py code being tested into a string so the ast.parse can read it
     code = Path(pythonFile).read_text()
     code_ast = ast.parse(code)
-    print(ast.dump(code_ast, indent=4))
 
     #List of the identifiers within the program
     identifierList = list(getIdentifiers(code_ast))
