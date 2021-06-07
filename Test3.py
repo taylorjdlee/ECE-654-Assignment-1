@@ -1,12 +1,6 @@
-a = 50
-b = 70
-if b > a:
+variable12345 = 50
+variable123456 = 70
+if variable123456 > variable12345:
   print("b is greater than a")
-  if b > a:
-      print("b is greater than a")
-      if b > a:
-          print("b is greater than a")
-          if b > a:
-              print("b is greater than a")
 else:
   print("a is greater than b")
