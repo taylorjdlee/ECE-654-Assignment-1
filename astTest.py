@@ -58,11 +58,9 @@ def main(pythonFile):
     code_ast = ast.parse(code)
 
     #List of the identifiers within the program
-    identifierList = []
     identifierList = list(getIdentifiers(code_ast))
 
     #List of length 13 identifiers in the program
-    identifierListLength13 = []
     identifierListLength13 = length13Check(identifierList)
 
     #Prints the .py filename
