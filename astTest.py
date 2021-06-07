@@ -1,14 +1,15 @@
 #Import for abstract syntax tree
 import ast
 from pathlib import Path
-#Function that returns all the Identifiers in the ast tree
 #List of identifiers found here https://docs.python.org/3/library/ast.html#abstract-grammar
 from pprint import pprint
 
 
+#Function that returns all the Identifiers in the ast tree
 def getIdentifiers(ast_code):
     root = ast_code
 
+    #Gets the child node of the current node and sees if it's an indentifier and yields it if it is
     for node in ast.walk(root):
         if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store):
             yield node.id
